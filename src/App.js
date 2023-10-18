@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomeScreen from './pages/Home.jsx'
+import { Canvas } from '@react-three/fiber';
+import HomeScreen from './pages/Home'
 import Header from './components/Header/Header.jsx';
 
 function App() {
@@ -9,8 +10,10 @@ function App() {
         <BrowserRouter>
         <Header/>
           <Routes>
-            <Route element={<HomeScreen />} path="/" />
-          </Routes>
+          <Route element={
+            <HomeScreen />
+            } path="/" />
+        </Routes>
         </BrowserRouter>
     </div>
   );

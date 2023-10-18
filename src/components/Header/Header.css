@@ -1,6 +1,9 @@
 .navbar {
     width: 100%;
     height: 10rem;
+    position: fixed;
+    z-index: 5;
+    background-color: transparent;
 }
 
 .navbar__container {
@@ -26,9 +29,9 @@
 }
 
 .navbar__logo__img {
-    width: 20rem;
+    width: 30rem;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* .navbar__logo__text{
@@ -53,6 +56,7 @@
     align-items: center;
     justify-content: flex-end;
 }
+
 .link__container__item {
     display: flex;
     align-items: center;
@@ -64,11 +68,11 @@
 }
 
 .link__item__link {
-font-size: 2rem;
-font-weight: 500;
-position: relative;
-color: var(--primary-color);
-text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    position: relative;
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
 .link__item__link__active {
@@ -89,12 +93,12 @@ text-decoration: none;
     content: '';
     width: 100%;
     height: 0.1rem;
-    background: var(--primary-color);
+    background: var(--accent-color);
     width: 100%;
     bottom: 0;
     left: 0;
     transform: scale(0);
-    transition: 0.2s ease-out;
+    transition: 0.35s ease-out;
     transform-origin: left bottom;
 }
 
@@ -108,20 +112,25 @@ text-decoration: none;
     height: 3rem;
     cursor: pointer;
     display: none;
+
 }
 
 .mobile__container {
     width: 100%;
     height: 8rem;
-  display: none;
+    display: none;
 }
 
 @media screen and (max-width: 750px) {
+    .navbar {
+        width: 100%;
+    }
+
     .navbar__container {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0  4rem;
+        padding: 0 4rem;
     }
 
     .navbar__logo {
@@ -138,14 +147,15 @@ text-decoration: none;
         z-index: 5;
         padding: 0rem;
     }
-    .link__container__items{
+
+    .link__container__items {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
         padding: 2rem;
         gap: 2rem;
-    }  
+    }
 
     .link__container__item {
         width: 100%;
@@ -155,12 +165,17 @@ text-decoration: none;
         font-size: 2rem;
         border-bottom: 0.1rem solid var(--black-primary);
     }
+
     .link__item__link {
         font-size: 2rem;
     }
 
     .menu {
         display: block;
+        position: absolute;
+        left: 3rem;
+        top: 3rem;
+        color: white;
     }
 
 

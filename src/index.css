@@ -6,25 +6,37 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
   --background-color: #000000;
-  --primary-color: rgb(255,255,255);
-  --accent-color: #fffffff;
+  --primary-color: rgb(255, 255, 255);
+  --accent-color: #D80032;
 }
 
-html{
+html {
   margin: 0;
   padding: 0;
   font-size: calc(100vw/1920 * 10);
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Varela Round', sans-serif;
- }
+}
 
-@media  screen and (max-width: 750px) {
-  html,body {
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 750px) {
+
+  html,
+  body {
     font-size: calc(100vw / 750 * 10);
   }
 }
-
