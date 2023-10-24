@@ -16,13 +16,19 @@
     gap: 5rem;
 }
 
+
 .hero__title {
+    font-family: 'Monoton';
+    word-spacing: 0.5rem;
     font-size: 10rem;
     font-weight: bold;
+    color: var(--primary-color);
+
 }
 
 @media screen and (max-width: 750px) {
     .hero__title {
-        font-size: 8rem;
+        font-family: 'Monoton';
+        font-size: 7.5rem;
     }
 }

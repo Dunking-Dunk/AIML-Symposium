@@ -44,11 +44,9 @@ export default Footer
 
 const Container = Styled.div`
 margin-top: 2rem;
-    padding: 3rem 5rem;
-    border: 0.2rem solid black;
+    padding: 3rem 2rem;
     background-color: transparent;
     width: 100%;
-
 `
 
 const LinkContainer = Styled.div`
@@ -79,7 +77,7 @@ text-transform: uppercase;
 margin-bottom: 2rem;
 `
 const Para = Styled.p`
-font-size: 1.2rem;
+font-size: 1.5rem;
 font-weight: 400;
 opacity: 0.6;
 margin-bottom: 3rem;

@@ -2,13 +2,21 @@ import { useRef } from 'react';
 import * as THREE from 'three'
 import { Canvas, extend, useFrame } from '@react-three/fiber'
 import { shaderMaterial, Preload } from "@react-three/drei";
+import { useControls } from 'leva'
+
 // import { MathUtils } from 'three'
 // import { DepthOfField, EffectComposer, Noise } from '@react-three/postprocessing'
 
-const Plane = () => {
+export const Plane = () => {
   const ref = useRef()
+  const { backgroundColor } = useControls({ backgroundColor: '#969191' })
+
+  useFrame((state, delta) => {
+    ref.current.uColor = new THREE.Color(backgroundColor)
+  })
+
   const ColorShiftMaterial = shaderMaterial(
-    { time: 0, color: new THREE.Color(0.2, 0.0, 0.1) },
+    { time: 0, uColor: new THREE.Color(backgroundColor) },
         // vertex shader
         /*glsl*/`
           varying vec2 vUv;
@@ -21,7 +29,7 @@ const Plane = () => {
         // fragment shader
     /*glsl*/`
     uniform float time;
-    uniform vec3 color;
+    uniform vec3 uColor;
     varying vec2 vUv;
 
       vec2 cubic(vec2 p) {
@@ -79,9 +87,9 @@ const Plane = () => {
             vn += valueNoiseFn(uv * 16.0) * 0.25;
             vn += valueNoiseFn(uv * 32.0) * 0.125;
             vn += valueNoiseFn(uv * 64.0) * 0.0625;
-            vn /= 2.0;
+            vn /= 4.0;
 
-           vec3 color=mix(vec3(0.),vec3(.3,0.,0.), vn);
+           vec3 color=mix(vec3(0.),uColor, vn * 0.5);
             gl_FragColor=vec4(color/abs(sin(time-uv.y-uv.x)),1.);
           }
         `
@@ -92,9 +100,10 @@ const Plane = () => {
 
   useFrame((state, delta) => (ref.current.time += delta))
   return (
-    <mesh rotation={[0, 2, 0]} position={[-5, 0, 0]}>
+    <mesh rotation={[0, 2, 0]} position={[-20, 0, 0]} dispose={null}>
       <planeGeometry args={[70, 70, 1]} />
       <colorShiftMaterial ref={ref} />
+
     </mesh>
   )
 }
@@ -110,7 +119,6 @@ const BackgroundCanvas = () => {
       camera={{ position: [100, 2, 0], fov: 25 }}
     >
       <pointLight intensity={10} />
-
       <Plane />
       <Preload all />
     </Canvas >

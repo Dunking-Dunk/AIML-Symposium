@@ -6,17 +6,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { motion } from 'framer-motion'
 
-// const NavLink = ({ children, href }: {
-//     children: string,
-//     href: string,
-// }) => {
-//     const pathname = usePathname()
-//     const isActive = pathname === href
-
-//     return <Link href={href} className={isActive ? styles.link__item__link__active:styles.link__item__link}>{children}</Link>
-// }
-
-export default function Header() {
+export default function Header({ onSectionChange }) {
     const containerRef = useRef()
     const [state, setState] = useState(false)
 
@@ -41,7 +31,7 @@ export default function Header() {
         <div className='navbar'>
             <div className="navbar__container" >
                 <div className="menu" onClick={helperFunction}>
-                    <RxHamburgerMenu size={24} />
+                    <RxHamburgerMenu size={24} color='white' />
                 </div>
                 <div className="navbar__logo__container">
                     <div className="navbar__logo">
@@ -52,22 +42,22 @@ export default function Header() {
                     <ul className="link__container__items">
                         <li className="mobile__container">
                             <div className="menu" onClick={helperFunction}>
-                                <AiOutlineClose size={24} />
+                                <AiOutlineClose size={24} color='white' />
                             </div>
                             <div className="navbar__logo">
                                 <img className="navbar__logo__img" src={logo} alt='picture of the person' />
                             </div>
                         </li>
                         <li className="link__container__item">
-                            <Link href='/' className='link__item__link' >Home</Link></li>
+                            <a className='link__item__link' onClick={() => onSectionChange(0)} >Home</a></li>
                         <li className="link__container__item">
-                            <a href='#about' className='link__item__link'>About</a></li>
+                            <a className='link__item__link' onClick={() => onSectionChange(1)}>About</a></li>
+                        <li className="link__container__item" >
+                            <a className='link__item__link' onClick={() => onSectionChange(2)}>Events</a></li>
                         <li className="link__container__item">
-                            <a href="#event" className='link__item__link'>Events</a></li>
+                            <a className='link__item__link' onClick={() => onSectionChange(4)}>Team</a></li>
                         <li className="link__container__item">
-                            <a href='#team' className='link__item__link'>Team</a></li>
-                        <li className="#gallery">
-                            <a href='/contact' className='link__item__link'>Contact</a></li>
+                            <a className='link__item__link' onClick={() => onSectionChange(6)}>Gallery</a></li>
                     </ul>
                 </motion.div>
             </div>

@@ -1,7 +1,8 @@
 import './Contact.css'
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 const Contact = () => {
+
     return (
         <div className='contact'>
             <div className='contact__container'>

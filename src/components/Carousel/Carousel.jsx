@@ -9,13 +9,8 @@ import 'swiper/css/navigation';
 
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
-import slide_image_1 from '../../assets/images/img_1.jpg';
-import slide_image_2 from '../../assets/images/img_2.jpg';
-import slide_image_3 from '../../assets/images/img_3.jpg';
-import slide_image_4 from '../../assets/images/img_4.jpg';
-import slide_image_5 from '../../assets/images/img_5.jpg';
+function App({ elements, navigate }) {
 
-function App() {
     return (
         <div className="swiper">
             <Swiper
@@ -39,21 +34,18 @@ function App() {
                 modules={[EffectCoverflow, Pagination, Navigation]}
                 className="swiper_container"
             >
-                <SwiperSlide>
-                    <img src={slide_image_1} alt="slide_image" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={slide_image_2} alt="slide_image" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={slide_image_3} alt="slide_image" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={slide_image_4} alt="slide_image" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={slide_image_5} alt="slide_image" />
-                </SwiperSlide>
+                {elements?.map((ele, key) => {
+                    return <SwiperSlide key={key} onClick={() => {
+                        if (navigate) {
+                            navigate('/event/1')
+                        }
+
+                    }
+                    }>
+                        {ele}
+                    </SwiperSlide>
+                })}
+
 
                 <div className="slider-controler">
                     <div className="swiper-button-prev slider-arrow">

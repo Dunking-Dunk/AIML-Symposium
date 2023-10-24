@@ -1,3 +1,51 @@
+@keyframes wiggle {
+    0% {
+        -webkit-transform: skewX(24deg);
+        filter: hue-rotate(0deg);
+    }
+
+    10% {
+        -webkit-transform: skewX(-8deg);
+    }
+
+    20% {
+        -webkit-transform: skewX(55deg);
+    }
+
+    30% {
+        -webkit-transform: skewX(-90deg);
+    }
+
+    40% {
+        -webkit-transform: skewX(29deg);
+    }
+
+    50% {
+        -webkit-transform: skewX(-90deg);
+    }
+
+    60% {
+        -webkit-transform: skewX(3deg);
+    }
+
+    70% {
+        -webkit-transform: skewX(-2deg);
+    }
+
+    80% {
+        -webkit-transform: skewX(1deg);
+    }
+
+    90% {
+        -webkit-transform: skewX(10deg);
+    }
+
+    100% {
+        -webkit-transform: skewX(0deg);
+        filter: hue-rotate(360deg);
+    }
+}
+
 .main__button {
     width: 180px;
     height: 60px;
@@ -21,6 +69,7 @@ svg {
 }
 
 .main__button:hover {
+    animation: wiggle 0.4s;
     transition: 1s ease-in-out;
 }
 
