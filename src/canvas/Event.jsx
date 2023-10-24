@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Float, MeshReflectorMaterial, Image, Preload, CubeCamera } from '@react-three/drei'
 import { EffectComposer, GodRays, Bloom } from '@react-three/postprocessing'
 import { easing } from 'maath'
+import * as Three from 'three'
 
 const GOLDENRATIO = 1.61803398875
 
@@ -34,6 +35,8 @@ const Emitter = forwardRef((props, forwardRef) => {
         imageRef.current.material.zoom = 2 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 2
         if (clicked) {
             easing.damp3(state.camera.position, 1, 10, 2)
+        } else {
+            easing.damp3(state.camera.position, new Three.Vector3(-10, 0, 10), 2)
         }
 
 
@@ -78,7 +81,7 @@ const EventCanvas = ({ }) => {
 
             <Suspense>
                 <color attach="background" args={['#050505']} />
-                <ambientLight intensity={1} />
+                <ambientLight intensity={0.5} />
                 <Floor />
                 <Screen />
             </Suspense>

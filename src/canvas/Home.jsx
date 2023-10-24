@@ -197,33 +197,29 @@ const HomeCanvas = ({ navigate }) => {
                 <Suspense>
                     {
                         started && (
-                            <>
-                                <Selection autoClear={false}>
-                                    <EffectComposer disableNormalPass multisampling={1} >
-                                        <Noise opacity={0.05} />
-                                        <ChromaticAberration blendFunction={BlendFunction.NORMAL}
-                                            offset={[0.009, 0.005]} />
-                                    </EffectComposer>
-                                    <Select enabled>
-                                        <Particles {...props} />
-                                        <Plane />
-                                    </Select>
-                                    <Select enabled={false}>
-                                        <ScrollControls damping={0.1} pages={totalHeight / window.innerHeight} >
-                                            <ScrollManager section={section} onSectionChange={setSection} />
-                                            <Scroll>
-                                                <FaceModel totalHeight={totalHeight} />
+                            <Selection autoClear={false}>
+                                <EffectComposer disableNormalPass multisampling={1} >
+                                    <Noise opacity={0.1} />
+                                    <ChromaticAberration blendFunction={BlendFunction.NORMAL}
+                                        offset={[0.005, 0.005]} />
+                                </EffectComposer>
+                                <Select enabled>
+                                    <Particles {...props} />
+                                    <Plane />
+                                </Select>
+                                <Select>
+                                    <ScrollControls damping={0.1} pages={totalHeight / window.innerHeight} >
+                                        <ScrollManager section={section} onSectionChange={setSection} />
+                                        <Scroll>
+                                            <FaceModel totalHeight={totalHeight} />
 
-                                            </Scroll>
-                                            <Scroll html>
-                                                <Interface setTotalHeight={setTotalHeight} navigate={navigate} />
-                                            </Scroll>
-                                        </ScrollControls>
-                                    </Select>
-                                </Selection>
-
-
-                            </>
+                                        </Scroll>
+                                        <Scroll html>
+                                            <Interface setTotalHeight={setTotalHeight} navigate={navigate} />
+                                        </Scroll>
+                                    </ScrollControls>
+                                </Select>
+                            </Selection>
 
                         )
                     }
