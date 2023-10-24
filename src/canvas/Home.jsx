@@ -28,7 +28,7 @@ function FaceModel(props) {
     const ref = useRef()
     const modelRef = useRef()
     const { nodes, materials } = useGLTF('./face2/scene.gltf')
-    const { faceColor, eyeColor } = useControls({ faceColor: '#333333', eyeColor: '#fcfcfc' })
+    const { faceColor, eyeColor } = useControls({ faceColor: '#4a00ad', eyeColor: '#ff00e6' })
 
     useGLTF.preload('./face/scene.gltf')
 
@@ -174,11 +174,11 @@ const HomeCanvas = ({ navigate }) => {
     const [section, setSection] = useState(0);
     const [totalHeight, setTotalHeight] = useState(0)
     const props = useControls({
-        focus: { value: 4.43, min: 3, max: 7, step: 0.01 },
-        speed: { value: 70, min: 0.1, max: 100, step: 0.1 },
+        focus: { value: 5.43, min: 3, max: 7, step: 0.01 },
+        speed: { value: 62, min: 0.1, max: 100, step: 0.1 },
         aperture: { value: 5.6, min: 1, max: 5.6, step: 0.1 },
         fov: { value: 110, min: 0, max: 200 },
-        curl: { value: 0.50, min: 0.01, max: 0.5, step: 0.01 },
+        curl: { value: 0.30, min: 0.01, max: 1, step: 0.01 },
     })
 
     return (
@@ -198,34 +198,37 @@ const HomeCanvas = ({ navigate }) => {
                     {
                         started && (
                             <>
-                                <Selection>
+                                <Selection autoClear={false}>
                                     <EffectComposer disableNormalPass multisampling={1} >
-                                        <Noise opacity={0.1} />
+                                        <Noise opacity={0.05} />
                                         <ChromaticAberration blendFunction={BlendFunction.NORMAL}
-                                            offset={[0.001, 0.005]} />
+                                            offset={[0.009, 0.005]} />
                                     </EffectComposer>
                                     <Select enabled>
                                         <Particles {...props} />
                                         <Plane />
                                     </Select>
+                                    <Select enabled={false}>
+                                        <ScrollControls damping={0.1} pages={totalHeight / window.innerHeight} >
+                                            <ScrollManager section={section} onSectionChange={setSection} />
+                                            <Scroll>
+                                                <FaceModel totalHeight={totalHeight} />
+
+                                            </Scroll>
+                                            <Scroll html>
+                                                <Interface setTotalHeight={setTotalHeight} navigate={navigate} />
+                                            </Scroll>
+                                        </ScrollControls>
+                                    </Select>
                                 </Selection>
 
-                                <ScrollControls damping={0.1} pages={totalHeight / window.innerHeight} >
-                                    <ScrollManager section={section} onSectionChange={setSection} />
-                                    <Scroll>
-                                        {/* <FaceModel totalHeight={totalHeight} /> */}
 
-                                    </Scroll>
-                                    <Scroll html>
-                                        <Interface setTotalHeight={setTotalHeight} navigate={navigate} />
-                                    </Scroll>
-                                </ScrollControls>
                             </>
 
                         )
                     }
                 </Suspense>
-
+                <Leva hidden />
                 <Preload all />
             </Canvas >
 

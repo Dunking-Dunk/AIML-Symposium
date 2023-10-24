@@ -13,13 +13,10 @@ class DofPointsMaterial extends THREE.ShaderMaterial {
       varying float vDistance;
 
       void main() { 
-        vec3 pos = texture2D(positions, position.xy).xyz * 2.;
+        vec3 pos = texture2D(positions, position.xy).xyz * 4.;
         vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-        mvPosition += uMouse.x;
-        mvPosition += uMouse.y;
         gl_Position = projectionMatrix * mvPosition;
         vDistance = abs(uFocus - -mvPosition.z);
-
         gl_PointSize = (step(1.0 - (1.0 / uFov), position.x)) * vDistance * uBlur;
       }`,
       fragmentShader: `uniform float uOpacity;
@@ -27,7 +24,7 @@ class DofPointsMaterial extends THREE.ShaderMaterial {
       void main() {
         vec2 cxy = 2.0 * gl_PointCoord - 1.0;
         if (dot(cxy, cxy) > 1.0) discard;
-        gl_FragColor = vec4(vec3(0.38,0.047,0.761) , 1.);
+        gl_FragColor = vec4(vec3(0.38,0.047,0.761) * 2. , 1.);
       }`,
       uniforms: {
         positions: { value: null },

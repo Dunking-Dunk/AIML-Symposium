@@ -5,7 +5,7 @@ import { useFBO } from '@react-three/drei'
 import './simulationMaterial'
 import './dofPointsMaterial'
 
-export function Particles({ speed, fov, aperture, focus, curl, size = 50, ...props }) {
+export function Particles({ speed, fov, aperture, focus, curl, size = 100, ...props }) {
     const simRef = useRef()
     const renderRef = useRef()
 
